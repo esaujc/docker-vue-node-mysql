@@ -1,0 +1,76 @@
+version: '3.8'
+
+networks:
+  project-network:
+    ipam:
+      config:
+        - subnet: 172.34.0.0/24
+
+services:
+
+ mysql:
+  container_name: mysql-db
+  image: woahbase/alpine-mysql
+  restart: always
+  ports:
+   - 3306:3306
+  # environment:
+  #  - PGID=100 
+  #  - PUID=1000 
+  #  - MYSQL_ROOT_PWD=insecurebydefault 
+  #  - MYSQL_USER=mysql 
+  #  - MYSQL_USER_PWD=insecurebydefault 
+  #  - MYSQL_USER_DB=projectdocker 
+  volumes:   
+   - data:/var/lib/mysql 
+  networks:
+    project-network:
+      ipv4_address: 172.34.0.10
+
+ backend:
+  container_name: backend-cont
+  image: backend-p
+  restart: always
+  build:
+   context: ./backend
+  ports:
+   - 3005:3005
+  depends_on:
+   - mysql
+  environment:
+   - MYSQL_URL=mysql-db  
+   - MYSQL_ROOT_PWD=insecurebydefault 
+   - MYSQL_USER=root 
+   - MYSQL_USER_PWD=insecurebydefault 
+   - MYSQL_USER_DB=projectdocker    
+  networks:
+    project-network:
+      ipv4_address: 172.34.0.11
+  # volumes:
+  #  - ./:/app
+  
+
+ frontend:
+  container_name: frontend-cont
+  image: frontend-p
+  restart: always
+  build:
+   context: ./frontend
+  ports:
+   - 3000:3000
+  depends_on:
+   - mysql
+   - backend
+  # environment:
+  #  - VUE_APP_BACKEND_URL=localhost:3005
+  # volumes:
+  #  - ./:/app
+  networks:
+    project-network:
+      ipv4_address: 172.34.0.12
+      
+
+volumes:
+ data:
+
+

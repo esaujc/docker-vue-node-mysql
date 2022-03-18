@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfrontend"]=self["webpackChunkfrontend"]||[]).push([[443],{199:function(n,r,e){e.r(r),e.d(r,{default:function(){return d}});var t=e(252);const u={class:"about"},c=(0,t._)("h1",null,"This is an docker project ",-1),s=[c];function o(n,r){return(0,t.wg)(),(0,t.iD)("div",u,s)}var a=e(744);const f={},i=(0,a.Z)(f,[["render",o]]);var d=i}}]);
+//# sourceMappingURL=about.ae20077b.js.map
