@@ -17,15 +17,12 @@ $ sudo docker stop <container_id>
 # Start again the container without lost of data
 $ sudo docker-compose -f docker-compose.mysql.yml start
 
-# List of containers
-$ sudo docker ps -a
-
 ```
-We use example database from (https://www.mysqltutorial.org/mysql-sample-database.aspx).
+We use part of the database example from (https://www.mysqltutorial.org/mysql-sample-database.aspx).
 Thank you very much.
 
 
-## Scenario 1 - MYSQL (container), FrontEnd (local Nuxt), Backend (local Express+Nodejs)
+## Scenario 1 - MYSQL (container), FrontEnd (local Vue), Backend (local Express+Nodejs)
 
 ```bash
 # Start MYSQL Container 
@@ -42,7 +39,7 @@ $ npm install
 - MYSQL_USER_PWD=insecurebydefault 
 - MYSQL_USER_DB=projectdocker
 
-# serve with hot reload at localhost:3005
+# Serve with hot reload at localhost:3005
 $ npm run dev
 
 # Frontend - Move to 'frontend' folder and install dependencies
@@ -52,7 +49,7 @@ $ npm install
 # Check frontend .env file
 - VUE_APP_BACKEND_URL=localhost:3005
 
-# serve with hot reload at localhost:3000
+# Serve with hot reload at localhost:3000
 $ npm run dev
 
 # Navigation http://localhost:3000 or http://localhost:3000/#
@@ -61,7 +58,7 @@ $ npm run dev
 ```
 
 
-## Scenario 2 - Docker-Compose: MYSQL (container), FrontEnd (container VUE+(http-server or Nginx), Backend (container Express+Nodejs)
+## Scenario 2 - Docker-Compose: MYSQL (container), FrontEnd (container VUE+(http-server or Nginx), Backend (container Nodejs+Express)
 
 ```bash
 # Start all containers with docker-compose
